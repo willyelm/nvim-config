@@ -21,6 +21,14 @@ return require('packer').startup(function(use)
       'archibate/lualine-time'
     }
   }
+  --[[
+  use {
+    'Bekaboo/dropbar.nvim',
+    requires = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    }
+  }
+  --]]
   use {
 	'nvim-treesitter/nvim-treesitter',
 	run = function()
@@ -47,6 +55,28 @@ return require('packer').startup(function(use)
 	  {'L3MON4D3/LuaSnip'},
 	  {'rafamadriz/friendly-snippets'},
 	}
+  }
+  use {
+    "hedyhli/outline.nvim",
+    config = function()
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>tt", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+      require("outline").setup {
+        -- Your setup opts here (leave empty to use defaults)
+      }
+    end,
+  }
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
   }
   --[[
   use {
