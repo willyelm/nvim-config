@@ -62,7 +62,9 @@ return require('packer').startup(function(use)
       -- Example mapping to toggle outline
       vim.keymap.set("n", "<leader>tt", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
       require("outline").setup {
-        -- Your setup opts here (leave empty to use defaults)
+        outline_window = {
+          position = 'left'
+        }  
       }
     end,
   }
@@ -77,6 +79,16 @@ return require('packer').startup(function(use)
         -- refer to the configuration section below
       }
     end
+  }
+  use {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    requires = {'nvim-tree/nvim-web-devicons'}
   }
   --[[
   use {
