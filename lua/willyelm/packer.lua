@@ -30,6 +30,12 @@ return require('packer').startup(function(use)
     end
   }
   use {
+    'folke/trouble.nvim',
+    config = function()
+      require("trouble").setup({})
+    end
+  }
+  use {
     'VonHeikemen/lsp-zero.nvim',
 	branch = 'v1.x',
 	requires = {
@@ -83,6 +89,7 @@ return require('packer').startup(function(use)
       require("barbecue").setup()
     end
   }
+  use 'nvim-treesitter/nvim-treesitter-context'
   --[[
   use {
     'Bekaboo/dropbar.nvim',
