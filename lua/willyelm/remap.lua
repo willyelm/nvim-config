@@ -6,7 +6,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "File Buffers" })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Help Preview"})
 
 -- Outline
-vim.keymap.set("n", "<leader>tt", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
 -- Tree
-vim.keymap.set("n", "<leader>ft", "<cmd>NvimTreeFocus<CR>", { desc = "Focus FileTree" })
+vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeFocus<CR>", { desc = "Focus FileTree" })
+
