@@ -27,4 +27,27 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.opt.termguicolors = true
+-- Set color scheme
 vim.cmd("colorscheme willyelm")
+-- Use spaces for tabs
+vim.cmd [[
+  set autoindent
+  set expandtab
+  set shiftwidth=2
+  set smartindent
+  set softtabstop=2
+  set tabstop=2
+]]
+--Display indentation guides
+--space:·,
+vim.cmd("set list listchars=tab:❘-,trail:~,extends:»,precedes:«,nbsp:×")
+
+
+--[[
+-- convert spaces to tabs when reading file
+autocmd! bufreadpost * set noexpandtab | retab! 4
+-- convert tabs to spaces before writing file
+autocmd! bufwritepre * set expandtab | retab! 4
+-- convert spaces to tabs after writing file (to show guides again)
+autocmd! bufwritepost * set noexpandtab | retab! 4
+--]]
