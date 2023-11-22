@@ -29,6 +29,8 @@ return require('packer').startup(function(use)
       ts_update()
     end
   }
+  use 'nvim-treesitter/nvim-treesitter-context'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use {
     'folke/trouble.nvim',
     config = function()
@@ -89,7 +91,7 @@ return require('packer').startup(function(use)
       require("barbecue").setup()
     end
   }
-  use 'nvim-treesitter/nvim-treesitter-context'
+
   --[[
   use {
     'Bekaboo/dropbar.nvim',

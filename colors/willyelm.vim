@@ -26,12 +26,12 @@ let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
 let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
 let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"   }
 let s:light_cyan      = { "gui": "#4FB8CC", "cterm": "14"  }
-let s:dark_green      = { "gui": "#10A778", "cterm": "2"   }
-let s:light_green     = { "gui": "#ace6bf", "cterm": "10"  }
+let s:dark_green      = { "gui": "#ace6bf", "cterm": "2"   }
+let s:light_green     = { "gui": "#c6f1d4", "cterm": "10"  }
 let s:dark_purple     = { "gui": "#af5fd7", "cterm": "134" }
 let s:light_purple    = { "gui": "#baabdf", "cterm": "140" }
-let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
-let s:light_yellow    = { "gui": "#e9d999", "cterm": "228"   }
+let s:yellow          = { "gui": "#e9d999", "cterm": "11"  }
+let s:light_yellow    = { "gui": "#eadead", "cterm": "228"   }
 let s:dark_yellow     = { "gui": "#7d713f", "cterm": "3"   }
 
 let s:background = &background
@@ -75,16 +75,15 @@ function! s:h(group, style)
     \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
-call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
-
 if &background != s:background
    execute "set background=" . s:background
 endif
 
+call s:h("Normal",        {"fg": s:norm})
 call s:h("Cursor",        {"bg": s:purple, "fg": s:norm })
 call s:h("Comment",       {"fg": s:bg_subtle, "gui": "italic"})
 
-call s:h("String",        {"fg": s:light_purple})
+call s:h("String",        {"fg": s:light_green})
 hi! link String           String
 
 call s:h("Constant",      {"fg": s:norm})
@@ -93,10 +92,14 @@ hi! link Number           Constant
 hi! link Boolean          Constant
 hi! link Float            Constant
 
-hi! link Identifier       Normal
-hi! link Function         Normal
+call s:h("Identifier",    {"fg": s:norm_strong})
+hi! link Identifier       Identifier
+hi! link Tag              Identifier
 
-call s:h("Keyword",       { "fg": s:norm_strong, "cterm": "bold", "gui": "bold" })
+call s:h("Function",      {"fg": s:light_purple})
+hi! link Function         Function
+
+call s:h("Keyword",       {"fg": s:norm_strong, "cterm": "bold", "gui": "bold" })
 hi! link Keyword          Keyword
 
 call s:h("Statement",     {"fg": s:norm_subtle})
@@ -116,9 +119,8 @@ hi! link PreCondit        PreProc
 call s:h("Type",          {"fg": s:light_yellow })
 hi! link StorageClass     Type
 hi! link Structure        Type
-hi! link Typedef          Constant
+hi! link Typedef          Type
 hi! link Type             Type
-hi! link Tag              Type
 
 call s:h("Special",       {"fg": s:norm_subtle, "gui": "italic"})
 hi! link SpecialChar      Special
@@ -186,11 +188,6 @@ call s:h("ColorColumn",   {"bg": s:bg_subtle})
 call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
-call s:h("htmlTag",             {"fg": s:light_yellow })
-call s:h("htmlSpecialTagName",  {"fg": s:light_yellow })
-call s:h("htmlTagName",         {"fg": s:light_yellow })
-call s:h("htmlEndTag",          {"fg": s:light_yellow })
-
 call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH2",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH3",        {"bg": s:bg, "fg": s:norm})
@@ -221,6 +218,11 @@ hi link GitGutterDelete             LineNr
 hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
 
-hi Normal guibg=NONE ctermbg=NONE
+" Treesitter
 
-
+hi! link @tag                 Function
+hi! link @tag.attribute       Normal
+hi! link @tag.delimiter       Normal
+hi! link @keyword             Keyword
+hi! link @type                Type
+hi! link @tag.component.jsx   Type

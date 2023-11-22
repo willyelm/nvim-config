@@ -51,7 +51,6 @@ vim.cmd [[
 --space:·,
 vim.cmd("set list listchars=tab:❘-,trail:~,extends:»,precedes:«,nbsp:×")
 
-
 --[[
 -- convert spaces to tabs when reading file
 autocmd! bufreadpost * set noexpandtab | retab! 4
